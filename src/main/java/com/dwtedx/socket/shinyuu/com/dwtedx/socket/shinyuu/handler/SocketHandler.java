@@ -5,10 +5,9 @@ import com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.server.ClientSocket;
 import com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.server.SocketPool;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 
 /**
@@ -31,11 +30,14 @@ public class SocketHandler {
         ClientSocket clientSocket = new ClientSocket();
         clientSocket.setSocket(socket);
         try {
-            clientSocket.setInputStream(new DataInputStream(socket.getInputStream()));
-            clientSocket.setOutputStream(new DataOutputStream(socket.getOutputStream()));
-            byte[] bytes = new byte[1024];
-            clientSocket.getInputStream().read(bytes);
-            clientSocket.setKey(new String(bytes, "utf-8"));
+            //clientSocket.setInputStream(new DataInputStream(socket.getInputStream()));
+            //clientSocket.setOutputStream(new DataOutputStream(socket.getOutputStream()));
+            clientSocket.setBufferedReader(new BufferedReader(new InputStreamReader(socket.getInputStream())));
+            clientSocket.setBufferedWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
+            //byte[] bytes = new byte[1024];
+            //clientSocket.getInputStream().read(bytes, 0, bytes.length);
+            //clientSocket.setKey(new String(bytes, StandardCharsets.UTF_8));
+            clientSocket.setKey(clientSocket.getBufferedReader().readLine());
             SocketPool.add(clientSocket);
             return clientSocket;
         } catch (IOException e) {
@@ -52,8 +54,11 @@ public class SocketHandler {
      */
     public static void sendMessage(ClientSocket clientSocket, String message) {
         try {
-            clientSocket.getOutputStream().write(message.getBytes("utf-8"));
+            //clientSocket.getOutputStream().write(message.getBytes(StandardCharsets.UTF_8));
             //clientSocket.getOutputStream().writeUTF(message);
+            clientSocket.getBufferedWriter().write(message);
+            clientSocket.getBufferedWriter().newLine(); //插入一个换行符，表示写入结束
+            clientSocket.getBufferedWriter().flush(); //字符流需要手动刷新，否则数据不会写入数据通道
         } catch (IOException e) {
             log.error("发送信息异常：{}", e);
             close(clientSocket);
@@ -69,9 +74,9 @@ public class SocketHandler {
     public static String onMessage(ClientSocket clientSocket) {
         byte[] bytes = new byte[1024];
         try {
-            clientSocket.getInputStream().read(bytes);
-            String msg = new String(bytes, "utf-8");
-            return msg;
+            //clientSocket.getInputStream().read(bytes);
+            //String msg = new String(bytes, "utf-8");
+            return clientSocket.getBufferedReader().readLine();
         } catch (IOException e) {
             e.printStackTrace();
             close(clientSocket);

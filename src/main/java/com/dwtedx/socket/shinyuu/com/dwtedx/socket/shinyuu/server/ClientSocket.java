@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
@@ -50,13 +52,12 @@ public class ClientSocket implements Runnable {
      * socket 属性
      */
     private Socket socket;
-    private DataInputStream inputStream;
-    private DataOutputStream outputStream;
+    //private DataInputStream inputStream; //字节流
+    //private DataOutputStream outputStream; //字节流
+    private BufferedReader bufferedReader; //字符流 读
+    private BufferedWriter bufferedWriter; //字符流 写
     private String key;
     private String message;
-
-
-
 
     /**
      * 摸你数据
@@ -66,10 +67,10 @@ public class ClientSocket implements Runnable {
         try {
             //摸你数据
             List<UserModel> list = new ArrayList<>();
-            list.add(new UserModel(1L, "shinyuu", "shinyuu qin"));
-            list.add(new UserModel(2L, "qyl", "qyl qin"));
-            list.add(new UserModel(3L, "zhang", "zhang qin"));
-            list.add(new UserModel(4L, "li", "li qin"));
+            list.add(new UserModel(1L, "shinyuu", "shinyuu 秦"));
+            list.add(new UserModel(2L, "qyl", "qyl 张"));
+            list.add(new UserModel(3L, "zhang", "zhang 王"));
+            list.add(new UserModel(4L, "li", "li 李"));
 
             //转json
             return objectMapper.writeValueAsString(list);
@@ -82,12 +83,18 @@ public class ClientSocket implements Runnable {
     @Override
     public void run() {
         objectMapper = BeanContext.getApplicationContext().getBean(ObjectMapper.class);
+        //发送数据
+        for (int i = 0; i < 5; i++) {
+            try {
+                SocketHandler.sendMessage(this, getData());
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
         while (true){
             try {
-                //发送数据
-                SocketHandler.sendMessage(this, getData());
-
                 //每5秒进行一次客户端连接，判断是否需要释放资源
                 TimeUnit.SECONDS.sleep(5);
             } catch (InterruptedException e) {
