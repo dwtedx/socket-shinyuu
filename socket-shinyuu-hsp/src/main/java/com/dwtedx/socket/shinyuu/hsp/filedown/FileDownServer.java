@@ -30,7 +30,7 @@ public class FileDownServer {
 
         String resFileName = null;
         if (downloadFileName.contains("拥抱")) {
-            resFileName = "files/隔壁老樊-多想在平庸的生活拥抱你 (Live).mp3";
+            resFileName = "files/隔壁老樊-多想在平庸的生活拥抱你.mp3";
         } else {
             resFileName = "files/儿歌-一只哈巴狗.mp3";
         }
