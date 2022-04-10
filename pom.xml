@@ -4,7 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.dwtedx</groupId>
     <artifactId>socket-shinyuu</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>socket-shinyuu-hsp</module>
+    </modules>
     <name>socket-shinyuu</name>
     <description>Socket project for Spring Boot</description>
     <properties>
