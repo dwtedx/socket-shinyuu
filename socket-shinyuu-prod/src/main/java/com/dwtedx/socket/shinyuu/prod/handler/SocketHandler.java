@@ -1,13 +1,13 @@
-package com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.handler;
+package com.dwtedx.socket.shinyuu.prod.handler;
 
 
-import com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.server.ClientSocket;
-import com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.server.SocketPool;
+
+import com.dwtedx.socket.shinyuu.prod.server.ClientSocket;
+import com.dwtedx.socket.shinyuu.prod.server.SocketPool;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
 
 
 /**

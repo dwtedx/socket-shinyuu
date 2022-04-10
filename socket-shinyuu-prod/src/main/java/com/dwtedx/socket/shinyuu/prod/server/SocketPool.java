@@ -1,4 +1,4 @@
-package com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.server;
+package com.dwtedx.socket.shinyuu.prod.server;
 
 import java.util.concurrent.ConcurrentHashMap;
 

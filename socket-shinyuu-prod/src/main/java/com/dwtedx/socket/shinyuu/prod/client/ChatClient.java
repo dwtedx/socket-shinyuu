@@ -1,4 +1,4 @@
-package com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.client;
+package com.dwtedx.socket.shinyuu.prod.client;
 
 import lombok.extern.slf4j.Slf4j;
 

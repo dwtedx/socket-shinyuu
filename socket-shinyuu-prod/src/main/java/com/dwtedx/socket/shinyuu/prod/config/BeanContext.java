@@ -1,4 +1,4 @@
-package com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.config;
+package com.dwtedx.socket.shinyuu.prod.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

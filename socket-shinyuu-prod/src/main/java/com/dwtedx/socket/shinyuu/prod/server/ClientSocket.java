@@ -1,9 +1,9 @@
-package com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.server;
+package com.dwtedx.socket.shinyuu.prod.server;
 
 
-import com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.config.BeanContext;
-import com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.handler.SocketHandler;
-import com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.model.UserModel;
+import com.dwtedx.socket.shinyuu.prod.config.BeanContext;
+import com.dwtedx.socket.shinyuu.prod.handler.SocketHandler;
+import com.dwtedx.socket.shinyuu.prod.model.UserModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;

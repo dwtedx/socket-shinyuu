@@ -1,9 +1,7 @@
-package com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.server;
+package com.dwtedx.socket.shinyuu.prod.server;
 
 
-import com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.handler.SocketHandler;
-import com.dwtedx.socket.shinyuu.com.dwtedx.socket.shinyuu.model.UserModel;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.dwtedx.socket.shinyuu.prod.handler.SocketHandler;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +12,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
