@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>socket-shinyuu-hsp</module>
+        <module>socket-shinyuu-nio</module>
     </modules>
     <name>socket-shinyuu</name>
     <description>Socket project for Spring Boot</description>
