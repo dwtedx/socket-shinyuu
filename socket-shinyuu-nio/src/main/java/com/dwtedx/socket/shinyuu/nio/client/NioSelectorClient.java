@@ -3,6 +3,7 @@ package com.dwtedx.socket.shinyuu.nio.client;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 /**
@@ -21,8 +22,8 @@ public class NioSelectorClient {
         // 3. 分配指定大小的缓冲区
         ByteBuffer buf = ByteBuffer.allocate(1024);
         // 4. 发送数据给服务端
-        String str = "hello";
-        buf.put((new Date().toString() + "\n" + str).getBytes());
+        String str = new Date() + " " + "shinyuu 秦\r\n";
+        buf.put(str.getBytes(StandardCharsets.UTF_8));
         buf.flip();
         sChannel.write(buf);
         sChannel.shutdownOutput();

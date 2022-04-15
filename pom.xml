@@ -9,6 +9,7 @@
     <modules>
         <module>socket-shinyuu-hsp</module>
         <module>socket-shinyuu-nio</module>
+        <module>socket-shinyuu-netty</module>
     </modules>
     <name>socket-shinyuu</name>
     <description>Socket project for Spring Boot</description>

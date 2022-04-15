@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -53,7 +54,7 @@ public class NioSelectorServer {
                     ByteBuffer byteBuffer = ByteBuffer.allocate(128);
                     int len = socketChannel.read(byteBuffer);
                     if(len > 0){
-                        System.out.println("接收到消息" + new String(byteBuffer.array()));
+                        System.out.println("接收到消息" + new String(byteBuffer.array(), StandardCharsets.UTF_8));
                     }
                     else if(len == -1){
                         System.out.println("客户端已断开");
@@ -62,7 +63,7 @@ public class NioSelectorServer {
 
                 }
                 //从事件集合中删除本次事件，防止下次select重复
-                //iterator.remove();
+                iterator.remove();
             }
 
         }
